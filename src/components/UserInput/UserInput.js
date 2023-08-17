@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
-import classes from './userInput.module.css'
+import { useState } from 'react';
+import classes from './UserInput.module.css';
 
 const initialUserInput = {
     'current-savings': 10000,
     'yearly-contribution': 1200,
     'expected-return': 7,
-    duration: 10
+    duration: 10,
 };
 
-export default function UserInput(props) {
+const UserInput = (props) => {
     const [userInput, setUserInput] = useState(initialUserInput);
 
     const submitHandler = (event) => {
         event.preventDefault();
+
         props.onCalculate(userInput);
     };
 
-    const resetHandler = (event) => {
+    const resetHandler = () => {
         setUserInput(initialUserInput);
     };
 
@@ -24,7 +25,7 @@ export default function UserInput(props) {
         setUserInput((prevInput) => {
             return {
                 ...prevInput,
-                [input]: +value
+                [input]: +value,
             };
         });
     };
@@ -34,8 +35,10 @@ export default function UserInput(props) {
             <div className={classes['input-group']}>
                 <p>
                     <label htmlFor="current-savings">Current Savings ($)</label>
-                    <input onChange={(event) =>
-                        inputChangeHandler('current-savings', event.target.value)}
+                    <input
+                        onChange={(event) =>
+                            inputChangeHandler('current-savings', event.target.value)
+                        }
                         value={userInput['current-savings']}
                         type="number"
                         id="current-savings"
@@ -43,8 +46,10 @@ export default function UserInput(props) {
                 </p>
                 <p>
                     <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-                    <input onChange={(event) =>
-                        inputChangeHandler('yearly-contribution', event.target.value)}
+                    <input
+                        onChange={(event) =>
+                            inputChangeHandler('yearly-contribution', event.target.value)
+                        }
                         value={userInput['yearly-contribution']}
                         type="number"
                         id="yearly-contribution"
@@ -56,8 +61,10 @@ export default function UserInput(props) {
                     <label htmlFor="expected-return">
                         Expected Interest (%, per year)
                     </label>
-                    <input onChange={(event) =>
-                        inputChangeHandler('expected-return', event.target.value)}
+                    <input
+                        onChange={(event) =>
+                            inputChangeHandler('expected-return', event.target.value)
+                        }
                         value={userInput['expected-return']}
                         type="number"
                         id="expected-return"
@@ -65,15 +72,22 @@ export default function UserInput(props) {
                 </p>
                 <p>
                     <label htmlFor="duration">Investment Duration (years)</label>
-                    <input onChange={(event) =>
-                        inputChangeHandler('duration', event.target.value)}
+                    <input
+                        onChange={(event) =>
+                            inputChangeHandler('duration', event.target.value)
+                        }
                         value={userInput['duration']}
                         type="number"
-                        id="duration" />
+                        id="duration"
+                    />
                 </p>
             </div>
             <p className={classes.actions}>
-                <button onClick={resetHandler} type="reset" className={classes.buttonAlt}>
+                <button
+                    onClick={resetHandler}
+                    type="reset"
+                    className={classes.buttonAlt}
+                >
                     Reset
                 </button>
                 <button type="submit" className={classes.button}>
@@ -81,5 +95,7 @@ export default function UserInput(props) {
                 </button>
             </p>
         </form>
-    )
-}
+    );
+};
+
+export default UserInput;

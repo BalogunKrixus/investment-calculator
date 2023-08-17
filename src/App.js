@@ -8,7 +8,6 @@ function App() {
 
   const calculateHandler = (userInput) => {
     setUserInput(userInput);
-
   };
 
   const yearlyData = [];
@@ -23,7 +22,6 @@ function App() {
       const yearlyInterest = currentSavings * expectedReturn;
       currentSavings += yearlyInterest + yearlyContribution;
       yearlyData.push({
-
         year: i + 1,
         yearlyInterest: yearlyInterest,
         savingsEndOfYear: currentSavings,
@@ -32,15 +30,13 @@ function App() {
     }
   }
 
-
-
   return (
     <div>
       <Header />
 
       <UserInput onCalculate={calculateHandler} />
 
-      {!userInput && <p style={{ textAlign: 'center' }} >No investment calculated yet.</p>}
+      {!userInput && <p style={{ textAlign: 'center' }}>No investment calculated yet.</p>}
       {userInput && <ResultsTable data={yearlyData} initialInvestment={userInput['current-savings']} />}
     </div>
   );
